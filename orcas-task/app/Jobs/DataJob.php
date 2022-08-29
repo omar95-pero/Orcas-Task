@@ -33,6 +33,9 @@ class DataJob implements ShouldQueue
      */
     public function handle()
     {
-            DB::table('users')->insert($this->users);
+            // DB::table('users')->insert($this->users);
+            foreach($this->users as $user){
+                DB::insert('insert into users (firstName, lastName, email,avatar,password) values (?,?,?,?,?)',[$user['firstName'],$user['lastName'],$user['email'],$user['avatar'],$user['password'],$user['created_at'],$user['updated_at']]);
+            }
     }
 }

@@ -6,7 +6,7 @@ use App\Jobs\DataJob;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
-
+use Hash;
 class FetchData extends Command
 {
     /**
@@ -47,6 +47,7 @@ class FetchData extends Command
                     'lastName'=>$var->lastName,
                     'email'=>$var->email,
                     'avatar'=>$var->avatar,
+                    'password'=>Hash::make(123456789),
                     'created_at'=>Carbon::now(),
                     'updated_at'=>Carbon::now(),
                 ];
