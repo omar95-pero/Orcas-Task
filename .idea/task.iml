@@ -120,6 +120,7 @@
       <excludeFolder url="file://$MODULE_DIR$/orcas-task/vendor/doctrine/inflector" />
       <excludeFolder url="file://$MODULE_DIR$/orcas-task/vendor/doctrine/lexer" />
       <excludeFolder url="file://$MODULE_DIR$/orcas-task/vendor/doctrine/instantiator" />
+      <excludeFolder url="file://$MODULE_DIR$/orcas-task/storage" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
