@@ -1,0 +1,52 @@
+version: '3'
+
+
+networks:
+  task:
+
+
+
+services:
+  nginx:
+    image: library/nginx:stable-alpine
+    container_name: nginx-container
+    volumes:
+      - ./orcas-task:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "8060:80"
+    depends_on:
+      - php
+      - mysql
+
+    networks:
+      - task
+  mysql:
+    image: library/mysql:5.7.22
+    container_name: mysql-container
+    restart: unless-stopped
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: homestead
+      MYSQL_USER: homestead
+      MYSQL_PASSWORD: homestead
+      MYSQL_ROOT_PASSWORD: homestead
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    networks:
+      - task
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php-container
+    volumes:
+      - ./orcas-task:/var/www/html
+    ports:
+      - "9000:9000"
+    networks:
+      - task
+
